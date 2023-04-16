@@ -5,6 +5,12 @@
 <script src="{% static 'lib/cookie.min.js' %}" defer></script>
 {% endblock %}
 {% load static %}
+<style>
+        a:active{
+            cursor:pointer;
+        }
+
+</style>
 {% block body %}
 <div class="container-fluid">
     <div class="topnav nav-effect">
@@ -34,11 +40,14 @@
     </div>
     <div class="create-form">
         <div class="container">
+        
             <p class="forms-label">Start a new form</p>
+            
             <div class="form-template-box">
-                <img src = "{% static 'Icon/blank-form.png' %}" alt = "Blank form" title = "Blank form" id="create-blank-form">
+                <a><img src = "{% static 'Icon/blank-form.png' %}" alt = "Blank form" title = "Blank form" id="create-blank-form"></a>
                 <span class="form-template-label">Blank Form</span>
             </div>
+            
             <div class="form-template-box big-screen">
                 <img src = "{% static 'Template/contact_information.png' %}" alt = "Contact Information" title = "Contact Information" id="create-contact-form">
                 <span class="form-template-label">Contact Information</span>

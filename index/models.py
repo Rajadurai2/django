@@ -38,6 +38,7 @@ class Form(models.Model):
     createdAt = models.DateTimeField(auto_now_add = True)
     updatedAt = models.DateTimeField(auto_now = True)
     questions = models.ManyToManyField(Questions, related_name = "questions")
+    creator_ip=models.CharField(max_length=30)
 
 class Responses(models.Model):
     response_code = models.CharField(max_length=20)
@@ -46,3 +47,9 @@ class Responses(models.Model):
     responder = models.ForeignKey(User, on_delete = models.CASCADE, related_name = "responder", blank = True, null = True)
     responder_email = models.EmailField(blank = True)
     response = models.ManyToManyField(Answer, related_name = "response")
+
+class Hostip(models.Model):
+    host_ip=models.CharField(max_length=30)
+
+class Clientip(models.Model):
+    client_ip=models.ForeignKey(Form, on_delete = models.CASCADE, related_name = "client_ip")

@@ -126,11 +126,15 @@ body{
     width: 10em;
     height: 7em;
     float: left;
+    
 }
 
 .form-template-box:hover{
     border: 1px solid black;
+    cursor: pointer;
 }
+
+
 
 .form-box{
     width: 250px;

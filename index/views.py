@@ -3,8 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.db import IntegrityError
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
-from .models import User, Choices, Questions, Answer, Form, Responses
+from .models import User, Choices, Questions, Answer, Form, Responses,Hostip,Clientip
 from django.core import serializers
+from index.functions.get_ip import get_user_ip
 import json
 import random
 import string
@@ -87,7 +88,7 @@ def create_form(request):
         question.save()
         question.choices.add(choices)
         question.save()
-        form = Form(code = code, title = title, creator=request.user)
+        form = Form(code = code, title = title, creator=request.user,creator_ip=get_user_ip())
         form.save()
         form.questions.add(question)
         form.save()
@@ -504,39 +505,55 @@ def get_client_ip(request):
 
 def submit_form(request, code):
     formInfo = Form.objects.filter(code = code)
+    user_ip_address=get_user_ip()
+    
     #Checking if form exists
     if formInfo.count() == 0:
         return HttpResponseRedirect(reverse('404'))
     else: formInfo = formInfo[0]
+
+
+
+    
+
     if formInfo.authenticated_responder:
         if not request.user.is_authenticated:
             return HttpResponseRedirect(reverse("login"))
-    if request.method == "POST":
-        code = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(20))
-        if formInfo.authenticated_responder:
-            response = Responses(response_code = code, response_to = formInfo, responder_ip = get_client_ip(request), responder = request.user)
-            response.save()
-        else:
-            if not formInfo.collect_email:
-                response = Responses(response_code = code, response_to = formInfo, responder_ip = get_client_ip(request))
+    
+
+    if formInfo.creator_ip!=user_ip_address:
+        return HttpResponse("you are not allowed")
+    else:
+
+    
+        if request.method == "POST":
+            code = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(20))
+            if formInfo.authenticated_responder:
+                response = Responses(response_code = code, response_to = formInfo, responder_ip = get_user_ip(), responder = request.user)
                 response.save()
             else:
-                response = Responses(response_code = code, response_to = formInfo, responder_ip = get_client_ip(request), responder_email=request.POST["email-address"])
-                response.save()
-        for i in request.POST:
-            #Excluding csrf token
-            if i == "csrfmiddlewaretoken" or i == "email-address":
-                continue
-            question = formInfo.questions.get(id = i)
-            for j in request.POST.getlist(i):
-                answer = Answer(answer=j, answer_to = question)
-                answer.save()
-                response.response.add(answer)
-                response.save()
-        return render(request, "index/form_response.html", {
-            "form": formInfo,
-            "code": code
-        })
+                if not formInfo.collect_email:
+                    response = Responses(response_code = code, response_to = formInfo, responder_ip = get_client_ip(request))
+                    response.save()
+                else:
+                    response = Responses(response_code = code, response_to = formInfo, responder_ip = get_client_ip(request), responder_email=request.POST["email-address"])
+                    response.save()
+            for i in request.POST:
+                #Excluding csrf token
+                if i == "csrfmiddlewaretoken" or i == "email-address":
+                    continue
+                question = formInfo.questions.get(id = i)
+                for j in request.POST.getlist(i):
+                    answer = Answer(answer=j, answer_to = question)
+                    answer.save()
+                    response.response.add(answer)
+                    response.save()
+            return render(request, "index/form_response.html", {
+                "form": formInfo,
+                "code": code
+            })
+
+        
 
 def responses(request, code):
     if not request.user.is_authenticated:
