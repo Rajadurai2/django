@@ -80,7 +80,7 @@ django-debug-toolbar==3.2.2
 django-heroku==0.3.1
 django-ipware==5.0.0
 django-summernote==0.8.11.6
-djangorestframework==3.10.1
+djangorestframework==3.14.0
 docutils @ file:///opt/conda/conda-bld/docutils_1657175430858/work
 entrypoints @ file:///tmp/build/80754af9/entrypoints_1649926439650/work
 et-xmlfile==1.1.0
