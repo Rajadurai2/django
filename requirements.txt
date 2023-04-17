@@ -62,7 +62,7 @@ cssselect==1.1.0
 cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
 Cython @ file:///opt/conda/conda-bld/cython_1663692770955/work
 cytoolz==0.11.0
-daal4py==2021.6.0
+daal4py==2023.1.1
 dask @ file:///tmp/abs_994957d9-ec12-411f-b953-c010f9d489d10hj3gz4k/croots/recipe/dask-core_1658513209934/work
 datashader @ file:///tmp/abs_aa58dfo4_s/croots/recipe/datashader_1659349033064/work
 datashape==0.5.4
