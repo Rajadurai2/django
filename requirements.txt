@@ -210,7 +210,7 @@ prometheus-client @ file:///tmp/abs_d3zeliano1/croots/recipe/prometheus_client_1
 prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1633440160888/work
 Protego @ file:///tmp/build/80754af9/protego_1598657180827/work
 psutil @ file:///opt/conda/conda-bld/psutil_1656431268089/work
-psycopg2==2.9.3
+psycopg2==2.9.6
 ptyprocess @ file:///tmp/build/80754af9/ptyprocess_1609355006118/work/dist/ptyprocess-0.7.0-py2.py3-none-any.whl
 public-ip==0.12
 py @ file:///opt/conda/conda-bld/py_1644396412707/work
