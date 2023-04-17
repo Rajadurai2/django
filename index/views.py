@@ -511,21 +511,13 @@ def submit_form(request, code):
     if formInfo.count() == 0:
         return HttpResponseRedirect(reverse('404'))
     else: formInfo = formInfo[0]
-
-
-
-    
-
     if formInfo.authenticated_responder:
         if not request.user.is_authenticated:
             return HttpResponseRedirect(reverse("login"))
-    
-
     if formInfo.creator_ip!=user_ip_address:
-        return HttpResponse("you are not allowed")
-    else:
-
+        return HttpResponseRedirect(reverse('404'))
     
+    else:    
         if request.method == "POST":
             code = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(20))
             if formInfo.authenticated_responder:
