@@ -250,7 +250,7 @@ python-slugify @ file:///tmp/build/80754af9/python-slugify_1620405669636/work
 python-snappy @ file:///tmp/build/80754af9/python-snappy_1610133040135/work
 pytube==12.1.0
 pytube3==9.6.4
-pytz==2022.1
+pytz==2023.3
 pyviz-comms @ file:///tmp/build/80754af9/pyviz_comms_1623747165329/work
 PyWavelets @ file:///tmp/build/80754af9/pywavelets_1648710015787/work
 pyxdg @ file:///tmp/build/80754af9/pyxdg_1603822279816/work
