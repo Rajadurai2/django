@@ -296,7 +296,7 @@ sphinxcontrib-serializinghtml @ file:///tmp/build/80754af9/sphinxcontrib-seriali
 spyder @ file:///opt/conda/conda-bld/spyder_1663056818299/work
 spyder-kernels @ file:///opt/conda/conda-bld/spyder-kernels_1662457880976/work
 SQLAlchemy @ file:///tmp/abs_18b3238f-9c23-4182-a392-63af30a93c1er8j_yw60/croots/recipe/sqlalchemy_1657867856580/work
-sqlparse==0.4.2
+sqlparse==0.4.4
 statsmodels @ file:///tmp/build/80754af9/statsmodels_1648015433305/work
 style==1.1.0
 sympy @ file:///tmp/build/80754af9/sympy_1647853653589/work
