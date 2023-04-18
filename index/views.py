@@ -515,13 +515,13 @@ def submit_form(request, code):
         if not request.user.is_authenticated:
             return HttpResponseRedirect(reverse("login"))
     if formInfo.creator_ip!=user_ip_address:
-        return HttpResponseRedirect(reverse('404'))
+        return HttpResponseRedirect(reverse('999'))
     
     else:    
         if request.method == "POST":
             code = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(20))
             if formInfo.authenticated_responder:
-                response = Responses(response_code = code, response_to = formInfo, responder_ip = get_user_ip(), responder = request.user)
+                response = Responses(response_code = code, response_to = formInfo, responder_ip = get_client_ip(request), responder = request.user)
                 response.save()
             else:
                 if not formInfo.collect_email:
@@ -572,6 +572,8 @@ def responses(request, code):
         keys = choiceAnswered[answr].values()
         for choice in choiceAnswered[answr]:
             filteredResponsesSummary[answr][choice] = choiceAnswered[answr][choice]
+    
+    bala=json.dump(responsesSummary)
     #Checking if form creator is user
     if formInfo.creator != request.user:
         return HttpResponseRedirect(reverse("403"))
@@ -831,3 +833,5 @@ def FourZeroThree(request):
 
 def FourZeroFour(request):
     return render(request, "error/404.html")
+def not_allowed(request):
+    return render(request,"error/999.html")

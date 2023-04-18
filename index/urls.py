@@ -35,5 +35,6 @@ urlpatterns = [
     path('form/<str:code>/response/<str:response_code>/edit', views.edit_response, name="edit_response"),
     path('form/<str:code>/responses/delete', views.delete_responses, name="delete_responses"),
     path('403', views.FourZeroThree, name="403"),
-    path('404', views.FourZeroFour, name="404")
+    path('404', views.FourZeroFour, name="404"),
+    path('999',views.not_allowed,name="999")
 ]
