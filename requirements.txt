@@ -10,7 +10,7 @@ appdirs==1.4.4
 argon2-cffi @ file:///opt/conda/conda-bld/argon2-cffi_1645000214183/work
 argon2-cffi-bindings @ file:///tmp/build/80754af9/argon2-cffi-bindings_1644569679365/work
 arrow @ file:///opt/conda/conda-bld/arrow_1649166651673/work
-asgiref==3.5.1
+asgiref==3.7.0
 astroid @ file:///tmp/abs_e5wkt48jiz/croots/recipe/astroid_1659023120113/work
 astropy @ file:///opt/conda/conda-bld/astropy_1657786094003/work
 async-timeout==4.0.2
